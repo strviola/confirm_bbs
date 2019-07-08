@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20190708135043) do
 
   create_table "messages", force: :cascade do |t|
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
