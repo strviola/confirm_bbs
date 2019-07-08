@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :messages
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users do
+    post :confirm
+  end
+  resources :messages do
+    post :confirm
+  end
 end
