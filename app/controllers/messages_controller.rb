@@ -15,9 +15,6 @@ class MessagesController < ApplicationController
   def edit
   end
 
-  def confirm
-  end
-
   def create
     @message = Message.new(message_params)
 
