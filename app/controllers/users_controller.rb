@@ -16,6 +16,13 @@ class UsersController < ApplicationController
   end
 
   def confirm
+    @user = User.new(user_params)
+    if @user.valid?
+      render :confirm
+    else
+      flash.now[:error] = "Validation error"
+      render :new
+    end
   end
 
   def create
