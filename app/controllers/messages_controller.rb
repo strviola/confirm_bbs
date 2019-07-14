@@ -27,10 +27,13 @@ class MessagesController < ApplicationController
   end
 
   def update
-    if @message.update(message_params)
-      redirect_to @message, notice: 'Message was successfully updated.'
-    else
+    @message.attributes = message_params
+
+    if params[:fix] || !@message.save
+      @message.clear_confirmed if params[:fix]
       render :edit
+    else
+      redirect_to @message, notice: 'Message was successfully updated.'
     end
   end
 
