@@ -18,22 +18,26 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    if params[:fix] || !@message.save
-      @message.clear_confirmed if params[:fix]
+    if params[:fix]
+      @message.clear_confirmed
       render :new
-    else
+    elsif @message.save
       redirect_to @message, notice: 'Message was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
     @message.attributes = message_params
 
-    if params[:fix] || !@message.save
-      @message.clear_confirmed if params[:fix]
+    if params[:fix]
+      @message.clear_confirmed
       render :edit
-    else
+    elsif @message.save
       redirect_to @message, notice: 'Message was successfully updated.'
+    else
+      render :edit
     end
   end
 
