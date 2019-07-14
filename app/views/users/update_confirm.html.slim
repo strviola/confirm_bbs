@@ -1,0 +1,7 @@
+h1 Confirm
+= form_for @user, url: { action: :update } do |f|
+  = f.hidden_field :name
+  h2 Name
+  p = @user.name
+  = f.submit 'Submit'
+  = f.submit 'Fix', name: 'fix'

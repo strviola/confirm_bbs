@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :update_confirm, :destroy]
 
   def index
     @users = User.all
@@ -25,6 +25,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_confirm
+    @user.attributes = user_params
+    if @user.valid?
+      render :update_confirm
+    else
+      flash.now[:error] = "Validation error"
+      render :edit
+    end
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -38,7 +48,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if params[:fix]
+      render :edit
+    elsif @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit

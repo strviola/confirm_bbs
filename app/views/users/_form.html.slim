@@ -1,8 +1,7 @@
-= form_for user, url: { action: :confirm } do |form|
-  - if flash[:error]
-    p style="color: red;" = flash[:error]
-  .field
-    = form.label :name
-    = form.text_area :name, id: :user_name
-  .actions
-    = form.submit value: 'Confirm'
+- if flash[:error]
+  p style="color: red;" = flash[:error]
+.field
+  = form.label :name
+  = form.text_area :name, id: :user_name
+.actions
+  = form.submit value: 'Confirm'

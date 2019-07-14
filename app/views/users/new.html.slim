@@ -1,4 +1,5 @@
 h1
   | New User
-= render 'form', user: @user
+= form_for @user, url: { action: :confirm } do |form|
+  = render 'form', user: @user, form: form
 = link_to 'Back', users_path
