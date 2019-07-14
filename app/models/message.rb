@@ -1,5 +1,5 @@
 # use ConfirmModule
 class Message < ApplicationRecord
   include ConfirmModule
-  validate :body, presence: true
+  validates :body, presence: true
 end
