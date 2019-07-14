@@ -10,6 +10,10 @@ table
     - @messages.each do |message|
       tr
         td
+          = message.id
+        td
+          = message.body
+        td
           = link_to 'Show', message
         td
           = link_to 'Edit', edit_message_path(message)

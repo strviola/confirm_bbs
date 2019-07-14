@@ -45,6 +45,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.fetch(:message, {})
+    params.require(:message).permit(:body)
   end
 end
