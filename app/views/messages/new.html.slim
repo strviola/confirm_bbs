@@ -1,4 +1,8 @@
-h1
-  | New Message
-= render 'form', message: @message
+- if @message.confirmed.blank?
+  h1
+    | New Message
+  = render 'form', message: @message
+- else
+  h1 Confirm Message
+  = render 'confirm', message: @message
 = link_to 'Back', messages_path

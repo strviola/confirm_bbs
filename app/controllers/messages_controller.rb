@@ -18,10 +18,11 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
-    else
+    if params[:fix] || !@message.save
+      @message.clear_confirmed if params[:fix]
       render :new
+    else
+      redirect_to @message, notice: 'Message was successfully created.'
     end
   end
 
@@ -45,6 +46,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, :confirmed)
   end
 end

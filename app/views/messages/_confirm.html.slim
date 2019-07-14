@@ -1,0 +1,7 @@
+= form_for message do |form|
+  = form.hidden_field :confirmed
+  = form.hidden_field :body
+  h2 body
+  p = message.body
+  = form.submit
+  = form.submit 'Fix', name: 'fix'
